@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<style type="text/css">
+	body, html,#allmap {width: 100%;height: 90%;margin:0;font-family:"微软雅黑";}
+	</style>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=4sLQUdCRPvttfQWR0SG7Qbdmk5FKUXld"></script>
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+	<title>AngularJS 简单应用</title>
+</head>
+<body>
+	<div id="allmap"></div>
+
+	<div ng-app = "mainApp" ng-controller="CalcController" >
+
+		<form name="myForm" novalidate>
+			<p>输入起点：<input type="text" name="start" ng-model="start" required>
+				<span style="color:red" ng-show="myForm.start.$dirty && myForm.start.$invalid">
+					<span ng-show="myForm.start.$error.required">起点是必须的。</span>
+				</span>
+			</p>
+
+			<p>输入终点：<input type="text" name="end" ng-model="end" required>
+				<span style="color:red" ng-show="myForm.end.$dirty && myForm.end.$invalid">
+					<span ng-show="myForm.end.$error.required">终点是必须的。</span>
+				</span>
+			</p>
+		</form>
+         
+        <button ng-click = "work()" ng-disabled="myForm.start.$dirty && myForm.start.$invalid ||  
+		myForm.end.$dirty && myForm.end.$invalid">搜索</button>
+        <p ng-model="list">{{result}}</p>
+
+    </div>
+    
+    <div id="result"></div>
+
+</body>
+</html>
+
+<script src="js/index.js"></script>
